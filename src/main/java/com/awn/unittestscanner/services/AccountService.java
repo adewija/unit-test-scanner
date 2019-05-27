@@ -26,7 +26,7 @@ public class AccountService {
             account.setEmail(accountDTO.getEmail());
             account.setPassword(accountDTO.getPassword());
             account.setPasswordStatus("used");
-            account.setAccountStatus("valid");
+            account.setAccountStatus("invalid");
             Account accountSaved = accountRepository.save(account);
 
             AccountDTO accountDTOFromEntity = convertToAccountDTO(accountSaved);
@@ -61,7 +61,7 @@ public class AccountService {
             account.setIdAccount(accountDTO.getIdAccount());
             account.setFullName(accountDTO.getFullName());
             account.setEmail(accountDTO.getEmail());
-            account.setAccountStatus("valid");
+            account.setAccountStatus("invalid");
             account.setPassword(accountBefore.getPassword());
             account.setPasswordStatus(accountBefore.getPasswordStatus());
             Account accountSaved = accountRepository.save(account);
