@@ -207,15 +207,15 @@ public class AccountController {
             return "redirect:/login-arf";
         }
 
-        boolean isEmailSuccess = emailService.sendEmailRegisterValidation(accountDTOSaved);
-
-        if (isEmailSuccess) {
-            return "redirect:/login-ar";
-        } else {
-            accountService.deleteAccountBeacuseEmailError(accountDTOSaved.getIdAccount());
-            model.addAttribute("newAccount", new AccountDTO());
-            return "register_page-show_message";
-        }
+//        boolean isEmailSuccess = emailService.sendEmailRegisterValidation(accountDTOSaved);
+//
+//        if (isEmailSuccess) {
+//            return "redirect:/login-ar";
+//        } else {
+//            accountService.deleteAccountBeacuseEmailError(accountDTOSaved.getIdAccount());
+//            model.addAttribute("newAccount", new AccountDTO());
+//            return "register_page-show_message";
+//        }
 
     }
 
