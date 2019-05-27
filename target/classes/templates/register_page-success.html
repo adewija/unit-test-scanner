@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Register Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: register-css"/>
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            <a class="login100-form-system p-b-10 p-t-10" th:href="@{/}">UNIT TEST SCANNER</a>
+
+            <hr style="border-width: 2px; border-color: #2926ac;">
+
+            <span class="login100-form-title p-b-20 p-t-20">Registration Success!</span>
+
+            <span class="login100-form-description p-b-25 p-t-20">Your account has been successfully registered!</span>
+
+            <div class="container-login100-form-btn">
+                <a th:href="@{/login}">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/popper.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/moment.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/register-page.js}"></script>
+<!--===============================================================================================-->
+
+
+</body>
+</html>

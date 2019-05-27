@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Header Fragment Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <div th:fragment="login-css">
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/iconic/css/material-design-iconic-font.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/login-page-utility.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/login-page.css}">
+        <!--===============================================================================================-->
+    </div>
+
+    <div th:fragment="register-css">
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/iconic/css/material-design-iconic-font.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/register-page-utility.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/register-page.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="update-password-css">
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/iconic/css/material-design-iconic-font.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/update-password-page-utility.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/update-password-page.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="header-home-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+        <!--===============================================================================================-->
+    </div>
+
+    <div th:fragment="header-list-project-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-project-information.css}">
+        <!--===============================================================================================-->
+
+    </div>
+
+    <div th:fragment="header-list-class-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-list-class.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/list-class-utility.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="header-list-class-public-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-list-class-public.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/list-class-utility.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="header-list-code-css">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-list-code.css}">
+        <!--===============================================================================================-->
+
+        <!-- Include EnlighterJS Styles -->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/enlighterJS/EnlighterJS.css}"/>
+
+        <!-- Monospace Fonts on Google Webfonts !-->
+        <link href='http://fonts.googleapis.com/css?family=Cutive+Mono|Roboto+Mono:400,700,400italic,500,500italic,700italic|Ubuntu+Mono:400,700,400italic,700italic|Droid+Sans+Mono|Source+Code+Pro:400,600'
+              rel='stylesheet' type='text/css'>
+
+        <!--&lt;!&ndash; Include MooTools Framework &ndash;&gt;-->
+        <!--<script type="text/javascript" th:src="@{/EnlighterJS-2.12.0/Resources/MooTools.min.js}"></script>-->
+
+        <!--&lt;!&ndash; Include EnlighterJS &ndash;&gt;-->
+        <!--<script type="text/javascript" th:src="@{/EnlighterJS-2.12.0/Build/EnlighterJS.min.js}"></script>-->
+
+        <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-language="java"
+              data-indent="4" data-selector-block="pre" data-selector-inline="code"/>
+
+
+        <!-- Special Styles -->
+        <style type="text/css">
+            /* custom hover effect using specific css class */
+            .EnlighterJS.myHoverClass li:hover {
+                background-color: #c0c0c0;
+            }
+
+            .cd-top {
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+                position: fixed;
+                bottom: 40px;
+                right: 10px;
+                -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                /* image replacement properties */
+                overflow: hidden;
+                text-indent: 100%;
+                white-space: nowrap;
+                background: rgba(41, 38, 172, 0.8) url(/images/icons/arrow.svg) no-repeat center 50%;
+                visibility: hidden;
+                opacity: 0;
+                -webkit-transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+                transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+                z-index: 1;
+                border-radius: 20px;
+            }
+
+            .cd-top.cd-top--show,
+            .cd-top.cd-top--fade-out,
+            .cd-top:hover {
+                -webkit-transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+                transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+            }
+
+            .cd-top.cd-top--show {
+                /* the button becomes visible */
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .cd-top.cd-top--fade-out {
+                /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+                opacity: .5;
+            }
+
+            .cd-top:hover {
+                background-color: #2926ac;
+                opacity: 1;
+            }
+
+            @media only screen and (min-width: 768px) {
+                .cd-top {
+                    right: 20px;
+                    bottom: 20px;
+                }
+            }
+
+            @media only screen and (min-width: 1024px) {
+                .cd-top {
+                    height: 60px;
+                    width: 60px;
+                    right: 30px;
+                    bottom: 30px;
+                }
+            }
+        </style>
+
+    </div>
+
+    <div th:fragment="header-list-code-public-css">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-list-code-public.css}">
+        <!--===============================================================================================-->
+
+        <!-- Include EnlighterJS Styles -->
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/enlighterJS/EnlighterJS.css}"/>
+
+        <!-- Monospace Fonts on Google Webfonts !-->
+        <link href='http://fonts.googleapis.com/css?family=Cutive+Mono|Roboto+Mono:400,700,400italic,500,500italic,700italic|Ubuntu+Mono:400,700,400italic,700italic|Droid+Sans+Mono|Source+Code+Pro:400,600'
+              rel='stylesheet' type='text/css'>
+
+        <!--&lt;!&ndash; Include MooTools Framework &ndash;&gt;-->
+        <!--<script type="text/javascript" th:src="@{/EnlighterJS-2.12.0/Resources/MooTools.min.js}"></script>-->
+
+        <!--&lt;!&ndash; Include EnlighterJS &ndash;&gt;-->
+        <!--<script type="text/javascript" th:src="@{/EnlighterJS-2.12.0/Build/EnlighterJS.min.js}"></script>-->
+
+        <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-language="java"
+              data-indent="4" data-selector-block="pre" data-selector-inline="code"/>
+
+
+        <!-- Special Styles -->
+        <style type="text/css">
+            /* custom hover effect using specific css class */
+            .EnlighterJS.myHoverClass li:hover {
+                background-color: #c0c0c0;
+            }
+
+            .cd-top {
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+                position: fixed;
+                bottom: 40px;
+                right: 10px;
+                -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                /* image replacement properties */
+                overflow: hidden;
+                text-indent: 100%;
+                white-space: nowrap;
+                background: rgba(41, 38, 172, 0.8) url(/images/icons/arrow.svg) no-repeat center 50%;
+                visibility: hidden;
+                opacity: 0;
+                -webkit-transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+                transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+                z-index: 1;
+                border-radius: 20px;
+            }
+
+            .cd-top.cd-top--show,
+            .cd-top.cd-top--fade-out,
+            .cd-top:hover {
+                -webkit-transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+                transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+            }
+
+            .cd-top.cd-top--show {
+                /* the button becomes visible */
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .cd-top.cd-top--fade-out {
+                /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+                opacity: .5;
+            }
+
+            .cd-top:hover {
+                background-color: #2926ac;
+                opacity: 1;
+            }
+
+            @media only screen and (min-width: 768px) {
+                .cd-top {
+                    right: 20px;
+                    bottom: 20px;
+                }
+            }
+
+            @media only screen and (min-width: 1024px) {
+                .cd-top {
+                    height: 60px;
+                    width: 60px;
+                    right: 30px;
+                    bottom: 30px;
+                }
+            }
+        </style>
+
+    </div>
+
+    <div th:fragment="header-project-information-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-project-information.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+
+    </div>
+
+    <div th:fragment="header-scanning-preparation-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="header-upload-project-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <div th:fragment="header-update-profile-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/form-page-utility.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/form-page.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+        <!--===============================================================================================-->
+
+
+        <!--===============================================================================================-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">-->
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/iconic/css/material-design-iconic-font.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{css/form-page-utility.css}">-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{css/form-page.css}">-->
+        <!--===============================================================================================-->
+
+        <style>
+            #divSpinner {
+                display: none;
+            }
+            .wrap-loader {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid darkblue;
+                border-bottom: 16px solid rebeccapurple;
+                width: 80px;
+                height: 80px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                padding: 0;
+                position:absolute;
+                left:0; right:0;
+                top:0; bottom:0;
+                margin:auto;
+
+                max-width:100%;
+                max-height:100%;
+                overflow:auto;
+                z-index: 1;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+    </div>
+
+    <div th:fragment="header-list-rule-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/style-list-rule.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/list-rule-utility.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/main.css}">
+        <!--===============================================================================================-->
+    </div>
+
+    <div th:fragment="header-add-rule-css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/themify-icons/themify-icons.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.theme.default.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/owl-carousel/owl.carousel.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/rule-page.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{css/form-page-utility.css}">
+
+        <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+        <!--===============================================================================================-->
+
+
+        <!--===============================================================================================-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">-->
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{fonts/iconic/css/material-design-iconic-font.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animate/animate.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/css-hamburgers/hamburgers.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/animsition/css/animsition.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/select2/select2.min.css}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" th:href="@{vendor/daterangepicker/daterangepicker.css}">
+        <!--===============================================================================================-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{css/form-page.css}">-->
+        <!--===============================================================================================-->
+    </div>
+
+
+</head>
+<body>
+
+<div th:fragment="header-home">
+
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <a class="navbar-brand logo_h" th:href="@{/home}"><img th:src="@{images/logo.png}"
+                                                                           style="max-height: 30px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item active"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/rule-list}">List Rule</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/update-profile}">Edit Profile</a></li>
+                            <li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>
+                        </ul>
+
+                        <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                            <a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+</div>
+
+<div th:fragment="header-navbar-not-active">
+
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <a class="navbar-brand logo_h" th:href="@{/home}"><img th:src="@{images/logo.png}"
+                                                                           style="max-height: 30px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/rule-list}">List Rule</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/update-profile}">Edit Profile</a></li>
+                            <li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>
+                        </ul>
+
+                        <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                            <a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+</div>
+
+<div th:fragment="header-navbar-not-active-with-leave-page-confirmation">
+
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <a class="navbar-brand logo_h" th:href="@{/home}" onclick="return leavePageConfirmation();"><img
+                            th:src="@{images/logo.png}"
+                            style="max-height: 30px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/home}" onclick="return leavePageConfirmation();">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/rule-list}" onclick="return leavePageConfirmation();">List Rule</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/update-profile}" onclick="return leavePageConfirmation();">Edit Profile</a></li>
+                            <li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>
+                        </ul>
+
+                        <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                            <a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+</div>
+
+<div th:fragment="header-update-profile">
+
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <a class="navbar-brand logo_h" th:href="@{/home}"><img th:src="@{images/logo.png}"
+                                                                           style="max-height: 30px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/rule-list}">List Rule</a></li>
+                            <li class="nav-item active "><a class="nav-link" th:href="@{/update-profile}">Edit Profile</a></li>
+                            <li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>
+                        </ul>
+
+                        <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                            <a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+</div>
+
+<div th:fragment="header-list-rule">
+
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <a class="navbar-brand logo_h" th:href="@{/home}"><img th:src="@{images/logo.png}"
+                                                                           style="max-height: 30px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                            <li class="nav-item active "><a class="nav-link" th:href="@{/rule-list}">List Rule</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/update-profile}">Edit Profile</a></li>
+                            <li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>
+                        </ul>
+
+                        <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+                            <a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+</div>
+
+<!--<div th:fragment="header-public">-->
+
+    <!--<header class="header_area">-->
+        <!--<div class="main_menu">-->
+            <!--<nav class="navbar navbar-expand-lg navbar-light">-->
+                <!--<div class="container box_1620">-->
+                    <!--<a class="navbar-brand logo_h" th:href="@{/}"><img th:src="@{images/logo.png}"-->
+                                                                           <!--style="max-height: 30px" alt=""></a>-->
+                    <!--<button class="navbar-toggler" type="button" data-toggle="collapse"-->
+                            <!--data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"-->
+                            <!--aria-expanded="false" aria-label="Toggle navigation">-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                    <!--</button>-->
+
+                    <!--<div class="collapse navbar-collapse offset" id="navbarSupportedContent">-->
+                        <!--<ul class="nav navbar-nav menu_nav justify-content-end">-->
+                            <!--<li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>-->
+                            <!--<li class="nav-item active "><a class="nav-link" th:href="@{/rule-list}">List Rule</a></li>-->
+                            <!--<li class="nav-item"><a class="nav-link" th:href="@{/update-profile}">Edit Profile</a></li>-->
+                            <!--<li class="nav-item" th:inline="text" style="margin-right: 50px;"><a class="nav-link">Hi [[${session.fullName}]]!</a></li>-->
+                        <!--</ul>-->
+
+                        <!--<div class="nav-right text-center text-lg-right py-4 py-lg-0">-->
+                            <!--<a class="button button-outline button-small" th:href="@{/account/logout}">Logout</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</nav>-->
+        <!--</div>-->
+    <!--</header>-->
+
+<!--</div>-->
+
+</body>
+</html>

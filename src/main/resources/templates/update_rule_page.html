@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<head>
+    <title>Update Rule Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: header-add-rule-css"/>
+
+</head>
+<body>
+
+<div th:replace="header :: header-navbar-not-active"/>
+
+
+<!--================ Banner Section start =================-->
+<section class="hero-banner" style="background: url(images/back-inner.jpg) center center no-repeat;">
+    <div class="container-login900">
+        <div class="wrapper fadeInDown">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" th:object="${rule}" th:action="${'/update-rule?idRuleGroup='+idRuleGroup}" method="post">
+
+                    <span class="login100-form-system">UNIT TEST SCANNER</span>
+
+                    <hr style="border-width: 2px; border-color: #2926ac;">
+
+                    <span class="login100-form-title p-b-10 p-t-5">Update Rule</span>
+
+                    <span class="login100-form-description p-b-15 p-t-10" th:inline="text">Hello [[${session.fullName}]]! You can update the name of rule, rule description, and rule syntax as you wish!</span>
+
+                    <input type="hidden" id="idRule" name="idRule" th:value="*{idRule}"/>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Rule Name">
+                        <input class="input100" type="text" id="ruleName" name="ruleName" th:value="*{ruleName}">
+                        <span class="focus-input100" data-placeholder="&#xf158;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Rule Description">
+                        <input class="input100" type="text" id="ruleDescription" name="ruleDescription" th:value="*{ruleDescription}">
+                        <span class="focus-input100" data-placeholder="&#xf25d;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Rule Syntax">
+                        <input class="input100" type="text" id="ruleSyntax" name="ruleSyntax" th:value="*{ruleSyntax}">
+                        <span class="focus-input100" data-placeholder="&#xf13a;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button type="button" class="login200-form-btn" data-toggle="modal" data-target="#basicExampleModal" style="margin-right: 25px; width: 150px">
+                            Instructions
+                        </button>
+
+                        <button class="login100-form-btn" type="submit" onclick="return validateRuleSyntax();" style="margin-left: 25px; width: 150px">
+                            Update Rule
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ Banner Section end =================-->
+
+<!--Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Writing Instructions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="login200-form-btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    function validateRuleSyntax() {
+        var ruleSyntax = document.getElementById("ruleSyntax").value;
+        var warning ="";
+
+        if (ruleSyntax.includes("->")) {
+            var arrRuleConditon = ruleSyntax.split("->");
+
+            if (arrRuleConditon.length === 3) {
+                if (!arrRuleConditon[0].includes("|") || !arrRuleConditon[1].includes("|") || arrRuleConditon[2] === "") {
+                    alert("Follow the instructions for writing the rule syntax correctly");
+                    return false;
+                }
+                var arrRuleSection1 = arrRuleConditon[0].split("|");
+                var arrRuleSection2 = arrRuleConditon[1].split("|");
+
+                if (arrRuleSection1.length === 2) {
+                    var firstScanningType = arrRuleSection1[0].trim();
+
+                    if(firstScanningType !== "Field Annotation" && firstScanningType !== "Method Call" && firstScanningType !== "Object Operation Reading Variable"){
+                        warning += "First Scanning Type must be \"Field Annotation\" or \"Method Call\" or \"Object Operation Reading Variable\".\n";
+
+                    }
+
+                } else {
+                    alert("Follow the instructions for writing the rule syntax correctly");
+                    return false;
+                }
+
+                if (arrRuleSection2.length === 2) {
+                    var secondScanningType = arrRuleSection2[0].trim();
+
+                    if(secondScanningType !== "Parameter" && secondScanningType !== "Method Call") {
+                        warning += "Second Scanning Type must be \"Parameter\" or \"Method Call\".";
+                    }
+
+                } else {
+                    alert("Follow the instructions for writing the rule syntax correctly");
+                    return false;
+                }
+
+            } else {
+                alert("Follow the instructions for writing the rule syntax correctly");
+                return false;
+            }
+        } else {
+            alert("Follow the instructions for writing the rule syntax correctly");
+            return false;
+        }
+
+        if (warning !== "") {
+            alert(warning);
+            return false;
+        }
+    }
+</script>
+
+
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/jquery.ajaxchimp.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/mail-script.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/main.js}"></script>
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/moment.min.js}"></script>
+<script th:src="@{vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/login-page.js}"></script>
+<!--===============================================================================================-->
+
+
+
+
+</body>
+</html>

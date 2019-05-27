@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<head>
+    <title>Add Rule Group Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: header-add-rule-css"/>
+
+</head>
+<body>
+
+<div th:replace="header :: header-navbar-not-active"/>
+
+
+<!--================ Banner Section start =================-->
+<section class="hero-banner" style="background: url(images/back-inner.jpg) center center no-repeat;">
+    <div class="container-login900">
+        <div class="wrapper fadeInDown">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" th:object="${ruleGroup}" th:action="@{/create-rule-group}" method="post">
+
+                    <span class="login100-form-system p-b-10 p-t-10">UNIT TEST SCANNER</span>
+
+                    <hr style="border-width: 2px; border-color: #2926ac;">
+
+                    <span class="login100-form-title p-b-20 p-t-20">Add Rule Group</span>
+
+                    <span class="login100-form-description p-b-40 p-t-20" th:inline="text">Hello [[${session.fullName}]]! You can add a group of rules by writing the name of the group rule and the rule group description in the column below!</span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Rule Group Name">
+                        <input class="input100" type="text" id="ruleGroupName" name="ruleGroupName" th:field="*{ruleGroupName}" placeholder="Rule Group Name">
+                        <span class="focus-input100" data-placeholder="&#xf158;"></span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter Rule Group Description">
+                        <input class="input100" type="text" id="ruleGroupDescription" name="ruleGroupDescription" th:field="*{ruleGroupDescription}" placeholder="Rule Group Description">
+                        <span class="focus-input100" data-placeholder="&#xf25d;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Add Rule Group
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ Banner Section end =================-->
+
+<script>
+
+</script>
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/jquery.ajaxchimp.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/mail-script.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/main.js}"></script>
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/moment.min.js}"></script>
+<script th:src="@{vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/login-page.js}"></script>
+<!--===============================================================================================-->
+
+
+
+
+</body>
+</html>

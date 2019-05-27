@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<head lang="en">
+
+    <title>Landing Page</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" th:href="@{EnlighterJS-2.12.0/screenshot1.png}" />
+
+    <!-- Include EnlighterJS Styles -->
+    <!-- Include EnlighterJS Styles -->
+    <link rel="stylesheet" type="text/css" href="../Build/EnlighterJS.min.css" />
+
+    <!-- Include MooTools Framework -->
+    <script type="text/javascript" src="../Resources/MooTools.min.js"></script>
+
+    <!-- Include EnlighterJS -->
+    <script type="text/javascript" src="../Build/EnlighterJS.min.js"></script>
+
+    <!-- Initialize EnlighterJS -->
+    <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-indent="4" data-selector-block="pre" data-selector-inline="code" data-language="javascript" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!-- Monospace Fonts on Google Webfonts !-->
+    <link href='http://fonts.googleapis.com/css?family=Cutive+Mono|Roboto+Mono:400,700,400italic,500,500italic,700italic|Ubuntu+Mono:400,700,400italic,700italic|Droid+Sans+Mono|Source+Code+Pro:400,600' rel='stylesheet' type='text/css'>
+
+
+    <!-- Special Styles -->
+    <style type="text/css">
+        /* custom hover effect using specific css class */
+        .EnlighterJS.myHoverClass li:hover{
+            background-color: #c0c0c0;
+        }
+    </style>
+
+    <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-language="javascript" data-indent="2" data-selector-block="pre" data-selector-inline="code" />
+
+
+</head>
+<body>
+
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>
+            Basic EnlighterJS Example			</h1>
+    </div>
+    <div id="content">
+        <!-- ############################################################# -->
+        <div class="alert alert-success" role="alert">Level: <strong>Beginner</strong></div>
+
+        <h3>Some Examples</h3>
+        <h4>jQuery Code (Javascript) - highlighted by EnlighterJS</h4>
+        <pre data-enlighter-language="jquery" data-enlighter-highlight="5">
+$('#loading-example-btn').click(function () {
+	var btn = $(this)
+	btn.button('loading')
+	$.ajax(...).always(function () {
+		btn.button('reset')
+	});
+});
+</pre>
+
+        <h4>Code-Tabs</h4>
+        <pre data-enlighter-language="jquery" data-enlighter-highlight="5" data-enlighter-group="group1">
+$('#loading-example-btn').click(function () {
+	var btn = $(this)
+	btn.button('loading')
+	$.ajax(...).always(function () {
+		btn.button('reset')
+	});
+});
+</pre>
+        <pre data-enlighter-language="mootools" data-enlighter-highlight="1" data-enlighter-group="group1">
+// initialize enlighterjs for block elements
+EnlighterJS.Util.Helper(document.getElements('pre'), {
+	// replace tabs with 2 spaces
+	indent: 2,
+
+	// special hover class
+	hover: 'myHoverClass',
+
+	// block element renderer
+	renderer: 'Block'
+});
+</pre>
+
+        <h4>Inline Code</h4>
+        <p>EnlighterJS also supports <code class="special" data-enlighter-language="js">alert('Inline Sourcecode highlighting');</code> (since version 2.0).</p>
+        <!-- ############################################################# -->
+    </div>
+    <!-- // content -->
+
+</div>
+<!-- // container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Welcome Spring Boot</h1>
+<div class="container">
+    <h1>Bismillahirrahmanirrahim</h1>
+
+    <pre data-enlighter-language="js">
+$('#loading-example-btn').click(function () {
+  var btn = $(this)
+  btn.button('loading')
+  $.ajax(...).always(function () {
+    btn.button('reset')
+  });
+});
+    </pre>
+
+    <pre data-enlighter-language="jquery" data-enlighter-highlight="5">
+$('#loading-example-btn').click(function () {
+	var btn = $(this)
+	btn.button('loading')
+	$.ajax(...).always(function () {
+		btn.button('reset')
+	});
+});
+</pre>
+
+    <h4>Code-Tabs</h4>
+    <pre data-enlighter-language="jquery" data-enlighter-highlight="5" data-enlighter-group="group1">
+$('#loading-example-btn').click(function () {
+	var btn = $(this)
+	btn.button('loading')
+	$.ajax(...).always(function () {
+		btn.button('reset')
+	});
+});
+</pre>
+    <pre data-enlighter-language="mootools" data-enlighter-highlight="1" data-enlighter-group="group1">
+// initialize enlighterjs for block elements
+EnlighterJS.Util.Helper(document.getElements('pre'), {
+	// replace tabs with 2 spaces
+	indent: 2,
+
+	// special hover class
+	hover: 'myHoverClass',
+
+	// block element renderer
+	renderer: 'Block'
+});
+</pre>
+
+
+
+    <div>
+        <a href="/login" class="btn btn-default">Login</a>
+    </div>
+
+    <div>
+        <a href="/register" class="btn btn-default">Register</a>
+    </div>
+
+    <script>
+        EnlighterJS.init('pre', 'code');
+    </script>
+
+
+
+</div>
+</body>
+</html>

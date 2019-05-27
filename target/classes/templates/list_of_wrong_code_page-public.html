@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>List of Wrong Code Page - Public</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: header-list-code-public-css"/>
+
+</head>
+<body id="top">
+
+<div class="container-page">
+    <section class="hero-banner">
+        <div class="container">
+            <div class="pb-30px text-center" style="position: relative">
+                <h2 th:inline="text">[[${class.className}]]</h2>
+                <h6 th:inline="text">(...[[${class.classPath}]])</h6>
+                <div class="section-style"></div>
+            </div>
+
+            <div class="pb-30px text-left" style="position: relative; margin: 20px;">
+                <h5 th:inline="text">Artifact ID : [[${project.artifactId}]]</h5>
+            </div>
+
+            <div class="pb-30px text-left" style="position: relative; margin: 20px;">
+                <h5>Scan Result :</h5>
+            </div>
+
+
+            <div class="limiter-table">
+                <div class="wrap-table100">
+                    <div class="table100">
+                        <table class="tableClass">
+                            <tr>
+                                <td>
+                                    <div style="overflow-y: scroll; max-height: 500px;" id="classes">
+                                        <!--<tbody>-->
+                                        <table class="tableBody">
+                                            <tr th:each="wrongTestCode,iterationStatus : ${class.wrongTestCodeList}">
+                                                <td class="column1" style="text-align: right" th:inline="text">
+                                                    [[${iterationStatus.count}]].
+                                                </td>
+                                                <td class="column2" style="text-align: left">Error Message :</td>
+                                                <td class="column3" style="text-align: left" th:inline="text">
+                                                    [[${wrongTestCode.errorMessage}]].
+                                                </td>
+                                                <td class="column4" style="text-align: center">
+                                                    <button class="button" th:data-id="${wrongTestCode.lineNumber}"
+                                                            th:onclick="goToCode(this.getAttribute('data-id'))">Go to
+                                                        Code
+                                                    </button>
+                                                    <!--th:attr="onclick=goToCode(#{wrongTestCode.lineNumber})"-->
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <!--</table>-->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pb-30px text-left" style="position: relative; margin: 20px;" id="startingCode">
+                    <h5>Source Code :</h5>
+                </div>
+
+                <pre data-enlighter-language="java" th:attr="data-enlighter-highlight=${allLineNumber}"
+                     th:inline="text">[[${sourceCode}]]</pre>
+            </div>
+        </div>
+    </section>
+</div>
+
+<a href="#0" class="cd-top js-cd-top">Top</a>
+
+
+<script>
+
+    (function () {
+        // Back to Top - by CodyHouse.co
+        var backTop = document.getElementsByClassName('js-cd-top')[0],
+            // browser window scroll (in pixels) after which the "back to top" link is shown
+            offset = 300,
+            //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+            offsetOpacity = 1200,
+            scrollDuration = 700,
+            scrolling = false;
+        if (backTop) {
+            //update back to top visibility on scrolling
+            window.addEventListener("scroll", function (event) {
+                if (!scrolling) {
+                    scrolling = true;
+                    (!window.requestAnimationFrame) ? setTimeout(checkBackToTop, 250) : window.requestAnimationFrame(checkBackToTop);
+                }
+            });
+            //smooth scroll to top
+            backTop.addEventListener('click', function (event) {
+                event.preventDefault();
+                (!window.requestAnimationFrame) ? window.scrollTo(0, 0) : scrollTop(scrollDuration);
+            });
+        }
+
+        function checkBackToTop() {
+            var windowTop = window.scrollY || document.documentElement.scrollTop;
+            (windowTop > offset) ? addClass(backTop, 'cd-top--show') : removeClass(backTop, 'cd-top--show', 'cd-top--fade-out');
+            (windowTop > offsetOpacity) && addClass(backTop, 'cd-top--fade-out');
+            scrolling = false;
+        }
+
+        function scrollTop(duration) {
+            var start = window.scrollY || document.documentElement.scrollTop,
+                currentTime = null;
+
+            var animateScroll = function (timestamp) {
+                if (!currentTime) currentTime = timestamp;
+                var progress = timestamp - currentTime;
+                var val = Math.max(Math.easeInOutQuad(progress, start, -start, duration), 0);
+                window.scrollTo(0, val);
+                if (progress < duration) {
+                    window.requestAnimationFrame(animateScroll);
+                }
+            };
+
+            window.requestAnimationFrame(animateScroll);
+        }
+
+        Math.easeInOutQuad = function (t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        };
+
+        //class manipulations - needed if classList is not supported
+        function hasClass(el, className) {
+            if (el.classList) return el.classList.contains(className);
+            else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+        }
+
+        function addClass(el, className) {
+            var classList = className.split(' ');
+            if (el.classList) el.classList.add(classList[0]);
+            else if (!hasClass(el, classList[0])) el.className += " " + classList[0];
+            if (classList.length > 1) addClass(el, classList.slice(1).join(' '));
+        }
+
+        function removeClass(el, className) {
+            var classList = className.split(' ');
+            if (el.classList) el.classList.remove(classList[0]);
+            else if (hasClass(el, classList[0])) {
+                var reg = new RegExp('(\\s|^)' + classList[0] + '(\\s|$)');
+                el.className = el.className.replace(reg, ' ');
+            }
+            if (classList.length > 1) removeClass(el, classList.slice(1).join(' '));
+        }
+    })();
+
+
+    function goToCode(lineNumber) {
+        var containDash = lineNumber.includes("-");
+        if (containDash) {
+            lineNumber = lineNumber.substring(0, lineNumber.indexOf("-"));
+        }
+
+        var pixelNumber = ((parseInt(lineNumber) + 4 ) * 18) - 36;
+
+        $('html, body').animate({
+            scrollTop: $("#startingCode").offset().top
+        }, 800);
+
+        $('html, body').animate({scrollTop: '+=' + pixelNumber + 'px'}, 1500);
+    }
+
+</script>
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.3.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/enlighterJS/MooTools.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/enlighterJS/EnlighterJS.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/jquery.ajaxchimp.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/mail-script.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/main.js}"></script>
+<!--===============================================================================================-->
+</body>
+</html>

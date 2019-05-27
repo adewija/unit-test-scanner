@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Register Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: register-css"/>
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="wrap-loader" id="divSpinner">
+                <div class="loader"></div>
+            </div>
+            <form class="login100-form validate-form" th:object="${newAccount}" th:action="@{/register-send-email}"
+                  method="post">
+
+                <a class="login100-form-system p-b-10 p-t-10" th:href="@{/}">UNIT TEST SCANNER</a>
+
+                <hr style="border-width: 2px; border-color: #2926ac;">
+
+                <span class="login100-form-title p-b-20 p-t-20">Register</span>
+
+                <span class="login100-form-description p-b-40 p-t-20">Please fill in all the fields below to process the registration of a new account!</span>
+
+
+                <div class="wrap-input100 validate-input" data-validate="Enter Full Name">
+                    <input class="input100" type="text" name="fullName" placeholder="Full Name" th:field="*{fullName}">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+
+                <div class="wrap-input100 validate-input" data-validate="Enter email">
+                    <input class="input100" type="email" name="email" placeholder="Email" th:field="*{email}">
+                    <span class="focus-input100" data-placeholder="&#xf15a;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="password" name="password" placeholder="Password" id="password"
+                           th:field="*{password}" onkeyup='checkPassword();'>
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password confirmation">
+                    <input class="input100" type="password" name="passwordConfirmation"
+                           placeholder="Password Confirmation" id="passwordConfirmation" onkeyup='checkPassword();'>
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    <span id='message' style="margin-bottom: 5px; position: absolute"></span>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit" onclick="return validate();">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    var isMatch;
+
+    function checkPassword() {
+        if (document.getElementById('password').value == document.getElementById('passwordConfirmation').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Password match';
+            isMatch = true;
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Password not match';
+            isMatch = false;
+        }
+    }
+
+    function validateFullName(fullname) {
+        var regex = /^[a-zA-Z ]+$/;
+        return regex.test(fullname);
+    }
+
+    function validateEmail(email) {
+        var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return regex.test(email);
+    }
+
+    function validate() {
+        var valid = true;
+        var warning = "Please check your";
+
+        var fullName = $("#fullName").val();
+        var email = $("#email").val();
+
+
+        if (!validateFullName(fullName)) {
+            valid = false;
+            warning += " full name"
+            if (!validateEmail(email)) {
+                warning += " and email"
+            }
+        } else {
+            if (!validateEmail(email)) {
+                valid = false;
+                warning += " email"
+            }
+        }
+
+        if (!valid) {
+            if (!isMatch) {
+                warning += "\nAnd your password doesn't match"
+            }
+            alert(warning + "!");
+            return false;
+        } else {
+            if (!isMatch) {
+                warning += " password. Because your password doesn't match!"
+                alert(warning);
+                return false;
+            }
+            displayLoader();
+            return true;
+        }
+    }
+
+    function displayLoader() {
+        var x = document.getElementById("divSpinner");
+        x.style.display = "block";
+    }
+</script>
+
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/popper.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/moment.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/register-page.js}"></script>
+<!--===============================================================================================-->
+
+
+</body>
+</html>

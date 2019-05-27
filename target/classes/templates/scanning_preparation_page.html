@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Scanning Preparation Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: header-scanning-preparation-css"/>
+
+</head>
+<body>
+
+<div th:replace="header :: header-navbar-not-active-with-leave-page-confirmation"/>
+
+<!--================ Banner Section start =================-->
+<section class="hero-banner text-center" style="background: url(images/back-inner.jpg) center center no-repeat;">
+    <div class="container">
+        <div class="wrap-loader" id="divSpinner">
+            <div class="loader"></div>
+        </div>
+
+        <h1>Unit Test Scanner</h1>
+        <div class="section-style"></div>
+        <p class="hero-subtitle">You are now on the scanning preparation page. Are you ready to do the scanning
+            process? See project information of your project that will be scanned by clicking the Project Information button!</p>
+        <a class="button button-outline" th:href="@{/project-info}" onclick="displayLoader();">Project Information</a>
+    </div>
+</section>
+<!--================ Banner Section end =================-->
+
+<script>
+    function leavePageConfirmation() {
+        var isConfirmed = confirm("If you leave this page, the system will delete the uploaded project! Are you sure you want to leave this page?");
+        if (isConfirmed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function displayLoader() {
+        var x = document.getElementById("divSpinner");
+        x.style.display = "block";
+    }
+</script>
+
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/jquery.ajaxchimp.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/mail-script.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/main.js}"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

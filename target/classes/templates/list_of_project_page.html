@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>List of Project Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: header-list-project-css"/>
+
+</head>
+<body>
+
+<div th:replace="header :: header-navbar-not-active"/>
+
+<!--<div class="container-page">-->
+
+<section class="hero-banner text-center" style="background: url(images/back-inner.jpg) center center no-repeat;">
+    <div class="container">
+        <div class="pb-20px text-center" style="position: relative">
+            <input class="searchArea" id="searchInput" type="text" placeholder="Search project..."
+                   style="z-index: 1; position: absolute; display: inline;right: 10px;top: 5px;">
+            <h2>List of Project</h2>
+            <div class="section-style"></div>
+        </div>
+
+        <div class="row" id="projects" style="overflow-y: scroll; max-height: 550px;">
+
+            <div class="col-sm-8 col-md-6 col-lg-4 mb-4 mb-lg-0" th:each="project : ${projectList}">
+                <div class="card text-center card-pricing">
+                    <div class="card-pricing__header">
+                        <h4 th:text="${project.artifactId}"></h4>
+                    </div>
+                    <ul class="card-pricing__list"
+                        style="text-align: left;list-style-type: square;padding-left: 30px;padding-right: 30px; padding-top: 20px">
+                        <li th:inline="text"
+                            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 270px;">Group
+                            ID : [[${project.groupId}]]
+                        </li>
+                        <li th:inline="text"
+                            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 270px;">
+                            Artifact ID : [[${project.artifactId}]]
+                        </li>
+                        <li th:inline="text"
+                            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 270px;">
+                            Version : [[${project.version}]]
+                        </li>
+                        <li th:inline="text"
+                            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 270px;">
+                            Number Of Unit Test : [[${project.numberUTClass}]] class
+                        </li>
+                        <li th:inline="text"
+                            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 270px;">
+                            Scanned with : [[${project.ruleGroup.ruleGroupName}]]
+                        </li>
+                        <li th:inline="text" style="white-space: nowrap;overflow: hidden;max-width: 198px;">Last Scan :
+                            [[${project.scanTime}]]
+                        </li>
+                    </ul>
+                    <div class="card-pricing__footer">
+                        <a th:href="${'class-list?id='+project.idProject}">
+                            <button class="button">See Result</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+                <!--<div class="card text-center card-pricing">-->
+                    <!--<div class="card-pricing__header">-->
+                        <!--<h4>projectVision</h4>-->
+                    <!--</div>-->
+                    <!--<ul class="card-pricing__list"-->
+                        <!--style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+                        <!--<li>Group ID : com.awn.blt</li>-->
+                        <!--<li>Artifact ID : projectVision</li>-->
+                        <!--<li>Version : 3.7.2</li>-->
+                        <!--<li>Number Of Unit Test : 24 class</li>-->
+                        <!--<li>Scanned with : Blibli Test Rule</li>-->
+
+                        <!--<li>Last Scan : 2019-05-15 17:46</li>-->
+                    <!--</ul>-->
+                    <!--<div class="card-pricing__footer">-->
+                        <!--<button class="button">See Result</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+                <!--<div class="card text-center card-pricing">-->
+                    <!--<div class="card-pricing__header">-->
+                        <!--<h4>projectxRey</h4>-->
+                    <!--</div>-->
+                    <!--<ul class="card-pricing__list"-->
+                        <!--style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+                        <!--<li>Group ID : com.rey.bdg</li>-->
+                        <!--<li>Artifact ID : projectxRey</li>-->
+                        <!--<li>Version : 4.2.1</li>-->
+                        <!--<li>Number Of Unit Test : 62 class</li>-->
+                        <!--<li>Scanned with : Blibli Test Rule</li>-->
+
+                        <!--<li>Last Scan : 2019-05-15 17:46</li>-->
+                    <!--</ul>-->
+                    <!--<div class="card-pricing__footer">-->
+                        <!--<button class="button">See Result</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+                <!--<div class="card text-center card-pricing">-->
+                    <!--<div class="card-pricing__header">-->
+                        <!--<h4>projectDelta</h4>-->
+                    <!--</div>-->
+                    <!--<ul class="card-pricing__list"-->
+                        <!--style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+                        <!--<li>Group ID : com.rey.jkt</li>-->
+                        <!--<li>Artifact ID : proprojectDelta</li>-->
+                        <!--<li>Version : 2.1.6</li>-->
+                        <!--<li>Number Of Unit Test : 47 class</li>-->
+                        <!--<li>Scanned with : Blibli Test Rule</li>-->
+
+                        <!--<li>Last Scan : 2019-05-15 17:46</li>-->
+                    <!--</ul>-->
+                    <!--<div class="card-pricing__footer">-->
+                        <!--<button class="button">See Result</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+                <!--<div class="card text-center card-pricing">-->
+                    <!--<div class="card-pricing__header">-->
+                        <!--<h4>projectAlpha</h4>-->
+                    <!--</div>-->
+                    <!--<ul class="card-pricing__list"-->
+                        <!--style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+                        <!--<li>Group ID : com.abc.arc</li>-->
+                        <!--<li>Artifact ID : projectAlpha</li>-->
+                        <!--<li>Version : 3.8.1</li>-->
+                        <!--<li>Number Of Unit Test : 35 class</li>-->
+                        <!--<li>Scanned with : Blibli Test Rule</li>-->
+
+                        <!--<li>Last Scan : 2019-05-15 17:46</li>-->
+                    <!--</ul>-->
+                    <!--<div class="card-pricing__footer">-->
+                        <!--<button class="button">See Result</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+                <!--<div class="card text-center card-pricing">-->
+                    <!--<div class="card-pricing__header">-->
+                        <!--<h4>auth</h4>-->
+                    <!--</div>-->
+                    <!--<ul class="card-pricing__list"-->
+                        <!--style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+                        <!--<li>Group ID : com.xxi.ath</li>-->
+                        <!--<li>Artifact ID : auth</li>-->
+                        <!--<li>Version : 5.0.1</li>-->
+                        <!--<li>Number Of Unit Test : 56 class</li>-->
+                        <!--<li>Scanned with : Blibli Test Rule</li>-->
+
+                        <!--<li>Last Scan : 2019-05-15 17:46</li>-->
+                    <!--</ul>-->
+                    <!--<div class="card-pricing__footer">-->
+                        <!--<button class="button">See Result</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">-->
+            <!--<div class="card text-center card-pricing">-->
+            <!--<div class="card-pricing__header">-->
+            <!--<h4>anomali</h4>-->
+            <!--</div>-->
+            <!--<ul class="card-pricing__list" style="text-align: left;list-style-type: square;padding-left: 50px;padding-right: 50px; padding-top: 20px">-->
+            <!--<li>Group ID : com.abc.ano</li>-->
+            <!--<li>Artifact ID : anomali</li>-->
+            <!--<li>Version : 2.9.2</li>-->
+            <!--<li>Number Of Unit Test : 212 class</li>-->
+            <!--<li>Last Scan : 23/03/2018</li>-->
+            <!--</ul>-->
+            <!--<div class="card-pricing__footer">-->
+            <!--<button class="button">See Result</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+</section>
+<!--</div>-->
+
+<script>
+    var input = document.getElementById("searchInput");
+    input.addEventListener("input", searchProject);
+
+    function searchProject(input) {
+        var filter = input.target.value.toUpperCase();
+
+        var list = document.getElementById("projects");
+        var divs = list.getElementsByTagName("div");
+        for (var i = 0; i < divs.length; i++) {
+            var div = divs[i].getElementsByTagName("div")[0];
+
+            if (div) {
+                if (div.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    divs[i].style.display = "";
+                } else {
+                    divs[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/jquery.ajaxchimp.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/mail-script.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/main.js}"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>

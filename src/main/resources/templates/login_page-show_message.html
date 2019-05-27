@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" th:href="@{images/icons/icon.png}"/>
+
+    <div th:replace="header :: login-css"/>
+
+</head>
+<body onload="showAlert()">
+
+<div class="limiter">
+    <div class="container-login100" style="background: url(images/back-outer.jpg) right center no-repeat;">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" th:object="${account}" th:action="@{/account/login}"
+                  method="post">
+
+                <span class="login100-form-system p-b-10 p-t-10">UNIT TEST SCANNER</span>
+
+                <hr style="border-width: 2px; border-color: #fff;">
+
+                <span class="login100-form-title p-b-20 p-t-20">Log in</span>
+
+                <span class="login100-form-description p-b-40 p-t-20">Welcome back! Login to scan your project and see projects that have been scanned.</span>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter email">
+                    <input class="input100" type="email" name="email" placeholder="Email" th:field="*{email}">
+                    <span class="focus-input100" data-placeholder="&#xf15a;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="password" name="pass" placeholder="Password"
+                           th:field="*{password}">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        Login
+                    </button>
+                </div>
+
+                <div class="text-center p-t-50">
+                    <span class="txt1">Did you</span>
+                    <a class="txt1" th:href="@{/forget-password}">Forget Your Password?</a>
+                    <span class="txt1">or</span>
+                    <a class="txt1" th:href="@{/register}">Create an Account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+
+    var message = /*[[${message}]]*/ 'default';
+    console.log(message);
+
+    /*]]>*/
+
+    function showAlert() {
+        alert(message);
+    }
+</script>
+
+
+<!--===============================================================================================-->
+<script th:src="@{vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/popper.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/moment.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{js/login-page.js}"></script>
+<!--===============================================================================================-->
+
+
+</body>
+</html>
