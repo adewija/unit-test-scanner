@@ -1,2 +1,19 @@
 #Ignore folder in projectDirectories
 ext-resources/projectDirectories
+
+#Ignore .idea
+.idea
+*.iml
+
+# IntelliJ
+*/out/**
+*/logs/**
+logs/**
+*/target/**
+target/
+
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+dependency-reduced-pom.xml
