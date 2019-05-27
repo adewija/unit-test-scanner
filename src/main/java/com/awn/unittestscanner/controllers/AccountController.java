@@ -216,6 +216,7 @@ public class AccountController {
 //            model.addAttribute("newAccount", new AccountDTO());
 //            return "register_page-show_message";
 //        }
+        return "redirect:/login-ar";
 
     }
 
