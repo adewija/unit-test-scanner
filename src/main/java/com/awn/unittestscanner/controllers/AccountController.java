@@ -302,7 +302,7 @@ public class AccountController {
 
         AccountDTO accountDTOSaved = accountService.updateAccount(accountDTO);
 
-        return "redirect:/home" ;
+        return "redirect:/update-profile-validate?id=" + accountDTOSaved.getIdAccount();
 
 //        boolean isEmailSuccess = emailService.sendEmailUpdateValidation(accountDTOSaved);
 //
