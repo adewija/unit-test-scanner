@@ -86,7 +86,7 @@
     }
 
     function validateFullName(fullname) {
-        var regex = /^[a-zA-Z ]+$/;
+        var regex = /^[a-zA-Z ]{3,30}$/;
         return regex.test(fullname);
     }
 
@@ -95,36 +95,47 @@
         return regex.test(email);
     }
 
+    function validatePassword(password) {
+        var regex = /(?=^.{8,}$)((?!.*\s)(?=.*[A-Z])(?=.*[a-z]))((?=(.*\d){1,})|(?=(.*\W){1,}))^.*$/;
+        return regex.test(password);
+    }
+
     function validate() {
         var valid = true;
         var warning = "Please check your";
 
-        var fullName = $("#fullName").val();
-        var email = $("#email").val();
-
+        var fullName = document.getElementById('fullName').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
 
         if (!validateFullName(fullName)) {
             valid = false;
-            warning += " full name"
+            warning += " full name";
             if (!validateEmail(email)) {
-                warning += " and email"
+                warning += " and email!";
             }
         } else {
             if (!validateEmail(email)) {
                 valid = false;
-                warning += " email"
+                warning += " email!";
             }
         }
 
         if (!valid) {
             if (!isMatch) {
-                warning += "\nAnd your password doesn't match"
+                warning += "\nYour password doesn't match";
             }
-            alert(warning + "!");
+            if (!validatePassword(password)) {
+                warning += "\nPassword must have at least 8 characters with at least one Capital letter, at least one lower case letter and at least one number or special character.";
+            }
+            alert(warning);
             return false;
         } else {
             if (!isMatch) {
-                warning += " password. Because your password doesn't match!"
+                warning += " password. Because your password doesn't match!";
+                if (!validatePassword(password)) {
+                    warning += "\nPassword must have at least 8 characters with at least one Capital letter, at least one lower case letter and at least one number or special character.";
+                }
                 alert(warning);
                 return false;
             }

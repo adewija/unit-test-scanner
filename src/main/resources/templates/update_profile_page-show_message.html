@@ -77,7 +77,7 @@
 
 
     function validateFullName(fullname) {
-        var regex = /^[a-zA-Z ]+$/;
+        var regex = /^[a-zA-Z ]{3,30}$/;
         return regex.test(fullname);
     }
 
@@ -93,23 +93,20 @@
         var fullName = $("#fullName").val();
         var email = $("#email").val();
 
-        console.log("log fullName : " + fullName);
-        console.log("log email : " + email)
-
         if (!validateFullName(fullName)) {
-            valid = false;
-            warning += " full name"
+            valid =false;
+            warning += " full name (Only Alphabet, Min. 3 and Max. 30 character)"
             if (!validateEmail(email)) {
                 warning += " and email"
             }
         } else {
             if (!validateEmail(email)) {
-                valid = false;
+                valid =false;
                 warning += " email"
             }
         }
 
-        if (!valid) {
+        if (!valid){
             alert(warning + "!");
             return false;
         } else {
