@@ -45,18 +45,18 @@ public class AccountService {
                 accountRepository.save(account);
             });
         }
-
-        Optional<Account> optionalAccount = accountRepository.findAccountByEmailAndAccountStatus(accountDTO.getEmail(), "valid");
-
-        if (optionalAccount.isPresent()) {
-
-            optionalAccountBefore.ifPresent(account -> {
-                account.setAccountStatus("valid");
-                accountRepository.save(account);
-            });
-
-            return null;
-        } else {
+//
+//        Optional<Account> optionalAccount = accountRepository.findAccountByEmailAndAccountStatus(accountDTO.getEmail(), "valid");
+//
+//        if (optionalAccount.isPresent()) {
+//
+//            optionalAccountBefore.ifPresent(account -> {
+//                account.setAccountStatus("valid");
+//                accountRepository.save(account);
+//            });
+//
+//            return null;
+//        } else {
             Account account = new Account();
             account.setIdAccount(accountDTO.getIdAccount());
             account.setFullName(accountDTO.getFullName());
@@ -68,7 +68,7 @@ public class AccountService {
 
             AccountDTO accountDTOFromEntity = convertToAccountDTO(accountSaved);
             return accountDTOFromEntity;
-        }
+//        }
     }
 
     public void validateAccount(long idAccount) {
