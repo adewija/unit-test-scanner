@@ -27,8 +27,8 @@ public class AccountController {
     @Autowired
     ProjectService projectService;
 
-    @Autowired
-    EmailService emailService;
+//    @Autowired
+//    EmailService emailService;
 
     @GetMapping(value = "/")
     public String landingPage(){
@@ -158,13 +158,15 @@ public class AccountController {
         if (accountDTOFromDB == null){
             return "redirect:/forget-password-f";
         } else {
-            boolean isEmailSuccess = emailService.sendEmailUpdatePassword(accountDTOFromDB);
-            if (isEmailSuccess) {
-                return "redirect:/login-afp";
-            } else {
-                accountService.updatePasswordStatusBecauseEmailError(accountDTOFromDB);
-                return "redirect:/forget-password-email-f";
-            }
+            return "redirect:/update-password?data=" + accountDTOFromDB.getFullName() + "&data=" + accountDTOFromDB.getEmail();
+
+//            boolean isEmailSuccess = emailService.sendEmailUpdatePassword(accountDTOFromDB);
+//            if (isEmailSuccess) {
+//                return "redirect:/login-afp";
+//            } else {
+//                accountService.updatePasswordStatusBecauseEmailError(accountDTOFromDB);
+//                return "redirect:/forget-password-email-f";
+//            }
 
         }
 
@@ -207,15 +209,18 @@ public class AccountController {
             return "redirect:/login-arf";
         }
 
-        boolean isEmailSuccess = emailService.sendEmailRegisterValidation(accountDTOSaved);
+        return "redirect:/account-validate?id=" + accountDTOSaved.getIdAccount();
 
-        if (isEmailSuccess) {
-            return "redirect:/login-ar";
-        } else {
-            accountService.deleteAccountBeacuseEmailError(accountDTOSaved.getIdAccount());
-            model.addAttribute("newAccount", new AccountDTO());
-            return "register_page-show_message";
-        }
+
+//        boolean isEmailSuccess = emailService.sendEmailRegisterValidation(accountDTOSaved);
+//
+//        if (isEmailSuccess) {
+//            return "redirect:/login-ar";
+//        } else {
+//            accountService.deleteAccountBeacuseEmailError(accountDTOSaved.getIdAccount());
+//            model.addAttribute("newAccount", new AccountDTO());
+//            return "register_page-show_message";
+//        }
     }
 
     @GetMapping(value = "/account-validate")
@@ -297,20 +302,22 @@ public class AccountController {
 
         AccountDTO accountDTOSaved = accountService.updateAccount(accountDTO);
 
-        boolean isEmailSuccess = emailService.sendEmailUpdateValidation(accountDTOSaved);
+        return "redirect:update-profile-validate?id=" + accountDTOSaved.getIdAccount();
 
-        if (isEmailSuccess) {
-            httpSession.invalidate();
-            return "redirect:/login";
-        } else {
-
-            if(accountDTOSaved == null){
-                return "redirect:/update-profile-f";
-            }
-
-            accountService.updateProfileBecauseEmailError(httpSession, accountDTOSaved);
-            return "redirect:/update-profile-email-f";
-        }
+//        boolean isEmailSuccess = emailService.sendEmailUpdateValidation(accountDTOSaved);
+//
+//        if (isEmailSuccess) {
+//            httpSession.invalidate();
+//            return "redirect:/login";
+//        } else {
+//
+//            if(accountDTOSaved == null){
+//                return "redirect:/update-profile-f";
+//            }
+//
+//            accountService.updateProfileBecauseEmailError(httpSession, accountDTOSaved);
+//            return "redirect:/update-profile-email-f";
+//        }
 
     }
 

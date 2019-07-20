@@ -26,7 +26,7 @@ public class AccountService {
             account.setEmail(accountDTO.getEmail());
             account.setPassword(accountDTO.getPassword());
             account.setPasswordStatus("used");
-            account.setAccountStatus("invalid");
+            account.setAccountStatus("valid");
             Account accountSaved = accountRepository.save(account);
 
             AccountDTO accountDTOFromEntity = convertToAccountDTO(accountSaved);
@@ -61,7 +61,7 @@ public class AccountService {
             account.setIdAccount(accountDTO.getIdAccount());
             account.setFullName(accountDTO.getFullName());
             account.setEmail(accountDTO.getEmail());
-            account.setAccountStatus("invalid");
+            account.setAccountStatus("valid");
             account.setPassword(accountBefore.getPassword());
             account.setPasswordStatus(accountBefore.getPasswordStatus());
             Account accountSaved = accountRepository.save(account);
@@ -88,7 +88,7 @@ public class AccountService {
         if (accountFromDB.isPresent()) {
             final AccountDTO[] accountDTOFromEntity = new AccountDTO[1];
             accountFromDB.ifPresent(account -> {
-                account.setPasswordStatus("changed");
+                account.setPasswordStatus("used");
                 accountRepository.save(account);
                 accountDTOFromEntity[0] = convertToAccountDTO(account);
             });
@@ -99,7 +99,7 @@ public class AccountService {
     }
 
     public boolean updatePassword(String email, String newPassword) {
-        Optional<Account> accountFromDB = accountRepository.findAccountByEmailAndPasswordStatus(email, "changed");
+        Optional<Account> accountFromDB = accountRepository.findAccountByEmailAndPasswordStatus(email, "used");
 
         if (accountFromDB.isPresent()) {
             accountFromDB.ifPresent(account -> {
